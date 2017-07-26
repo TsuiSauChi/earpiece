@@ -4,14 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html',
   providers: [AngularFireDatabase]
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = HomePage;
   items: FirebaseListObservable<any[]>;
 
   constructor(

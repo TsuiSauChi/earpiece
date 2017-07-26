@@ -2,16 +2,14 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {Earpiece} from  './earpiece';
-import {FirebaseService} from '../../app/service/earpiece.firebase';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [AngularFireDatabase, FirebaseService]
+  providers: [AngularFireDatabase]
 })
 export class HomePage {
-  //earpieces : FirebaseListObservable<any[]>;
-  earpiece: any[];
+  earpiece : FirebaseListObservable<any[]>;
   piece : any;
   sensitivity = 95;
   private impedance = 30;
@@ -20,18 +18,14 @@ export class HomePage {
 
   test:  FirebaseListObservable<Earpiece[]>;
 
-  constructor(public navCtrl: NavController,  public db: AngularFireDatabase, _firebaseService: FirebaseService) {
-       _firebaseService.getearpiece().subscribe(earpiece => {
-         console.log(this.earpiece)
-       });
-        /*
+  constructor(public navCtrl: NavController,  public db: AngularFireDatabase) {
+     
        this.earpiece = this.db.list('earpiece', {
         query: {
         orderByChild: 'Sensitivity', 
         equalTo: this.sensitivity
       }
     });
-    */
 
     this.test = this.db.list('/earpiece') as FirebaseListObservable<any[]>;
     this.test.subscribe(test => {
@@ -50,7 +44,6 @@ export class HomePage {
     //var index = this.image(sensitivity, impedance, frequency, price)
   }
   */
-/*
   change(sensitivity){
     sensitivity = this.sensitivity;
     this.earpiece = this.db.list('earpiece', {
@@ -61,6 +54,5 @@ export class HomePage {
     });
     console.log(sensitivity);
   }
-  */
 
 }
