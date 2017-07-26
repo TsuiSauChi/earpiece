@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-list-header>
+      Sensitivity
+       <ion-badge item-end>{{sensitivity}}<span> dB SPL/mW</span></ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range (ionChange)="change(sensitivity);"  min="95" step="1" max="103"  [(ngModel)]="sensitivity">
+        <ion-label range-left class="small-text">High</ion-label>
+        <ion-label range-right>Low</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <!--
+  <ion-list>
+   <ion-list-header>
+      Impedance
+      <ion-badge item-end>{{impedance}}<span> Ohm@1kHz</span></ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range (ionChange)="change();" min="10" step="5" max="50" [(ngModel)]="impedance">
+        <ion-label range-left class="small-text">High</ion-label>
+        <ion-label range-right>Low</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+ <ion-list>
+   <ion-list-header>
+      Frequency Response
+      <ion-badge item-end>{{frequency}} <span>Hz</span></ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range (ionChange)="change();" min="15000" step="1000" max="25000"  [(ngModel)]="frequency">
+        <ion-label range-left class="small-text">High</ion-label>
+        <ion-label range-right>Low</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+   <ion-list>
+   <ion-list-header>
+      Price
+      <ion-badge item-end><span>USD </span>{{price}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range (ionChange)="change();" min="5" step="5" max="200"  [(ngModel)]="price">
+        <ion-label range-left class="small-text">High</ion-label>
+        <ion-label range-right>Low</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  -->
+    <ion-card style="width:100%;" class="cart-img" *ngFor="let piece of earpiece | async">
+      <img src="{{piece.Image}}"/>
+      <ion-item>
+        <h1><b>{{piece.Name}}</b></h1>
+        <p>{{piece.OperatingSystem}}</p>
+      </ion-item>
+    <ion-item actions>
+    <span ion-text item-start color="secondary" class="item-bold">{{piece.Price}}</span>
+  </ion-item>
+  </ion-card>
+</ion-content>
