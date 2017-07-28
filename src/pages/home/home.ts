@@ -11,9 +11,6 @@ import {Earpiece} from  './earpiece';
 export class HomePage {
   earpiece : FirebaseListObservable<any[]>;
   piece : any;
-  sensitivity = 95;
-  private impedance = 30;
-  private frequency = 20000;
   private price = 5;
   private priceRange;
   private priceRangeDisplay = "Under $100";
@@ -24,8 +21,8 @@ export class HomePage {
      
        this.earpiece = this.db.list('earpiece', {
         query: {
-        orderByChild: 'Sensitivity', 
-        equalTo: this.sensitivity
+        orderByChild: 'PriceRange', 
+        equalTo: this.priceRange
       }
       });
   }
@@ -40,16 +37,6 @@ export class HomePage {
     //var index = this.image(sensitivity, impedance, frequency, price)
   }
   */
-  change(sensitivity){
-    sensitivity = this.sensitivity;
-    this.earpiece = this.db.list('earpiece', {
-      query: {
-        orderByChild: 'Sensitivity', 
-        equalTo: sensitivity
-      }
-    });
-    console.log(sensitivity);
-  }
 
   change1(priceRange){
     priceRange = this.priceRange

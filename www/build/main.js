@@ -50,15 +50,12 @@ var HomePage = (function () {
     function HomePage(navCtrl, db) {
         this.navCtrl = navCtrl;
         this.db = db;
-        this.sensitivity = 95;
-        this.impedance = 30;
-        this.frequency = 20000;
         this.price = 5;
         this.priceRangeDisplay = "Under $100";
         this.earpiece = this.db.list('earpiece', {
             query: {
-                orderByChild: 'Sensitivity',
-                equalTo: this.sensitivity
+                orderByChild: 'PriceRange',
+                equalTo: this.priceRange
             }
         });
     }
@@ -72,16 +69,6 @@ var HomePage = (function () {
         //var index = this.image(sensitivity, impedance, frequency, price)
       }
       */
-    HomePage.prototype.change = function (sensitivity) {
-        sensitivity = this.sensitivity;
-        this.earpiece = this.db.list('earpiece', {
-            query: {
-                orderByChild: 'Sensitivity',
-                equalTo: sensitivity
-            }
-        });
-        console.log(sensitivity);
-    };
     HomePage.prototype.change1 = function (priceRange) {
         priceRange = this.priceRange;
         this.earpiece = this.db.list('earpiece', {
@@ -116,12 +103,13 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\Users\tsuis\Desktop\Programming\Ionic\earpiece\src\pages\home\home.html"*/'<ion-content padding>\n  <ion-input placeholder="Enter earpiece" [(ngModel)]="earpiecesearch"></ion-input>\n  <button ion-button icon-start>\n  <ion-icon name="star"></ion-icon>\n  Bass\n</button>\n\n<button ion-button icon-end>\n  Balanced\n  <ion-icon name="star"></ion-icon>\n</button>\n\n  <ion-list>\n    <ion-list-header>\n      Sensitivity\n       <ion-badge item-end>{{sensitivity}}<span> dB SPL/mW</span></ion-badge>\n    </ion-list-header>\n    <ion-item>\n      <ion-range (ionChange)="change(sensitivity);"  min="95" step="1" max="103"  [(ngModel)]="sensitivity">\n        <ion-label range-left class="small-text">High</ion-label>\n        <ion-label range-right>Low</ion-label>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n\n  <ion-list>\n   <ion-list-header>\n      Price\n      <ion-badge item-end><span>Price:  </span>{{priceRangeDisplay}}</ion-badge>\n    </ion-list-header>\n    <ion-item>\n      <ion-range (ionChange)="change1(priceRange);" min="100" step="100" max="600"  [(ngModel)]="priceRange">\n        <ion-label range-left class="small-text">High</ion-label>\n        <ion-label range-right>Low</ion-label>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n\n  <ion-list>\n    <ion-list-header>\n      Rating\n    </ion-list-header>\n    <ion-item>\n      <ion-range>\n        <ion-label range-left class="small-text">1</ion-label>\n        <ion-label range-right>10</ion-label>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n  <!--\n  <ion-list>\n   <ion-list-header>\n      Impedance\n      <ion-badge item-end>{{impedance}}<span> Ohm@1kHz</span></ion-badge>\n    </ion-list-header>\n    <ion-item>\n      <ion-range (ionChange)="change();" min="10" step="5" max="50" [(ngModel)]="impedance">\n        <ion-label range-left class="small-text">High</ion-label>\n        <ion-label range-right>Low</ion-label>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n\n <ion-list>\n   <ion-list-header>\n      Frequency Response\n      <ion-badge item-end>{{frequency}} <span>Hz</span></ion-badge>\n    </ion-list-header>\n    <ion-item>\n      <ion-range (ionChange)="change();" min="15000" step="1000" max="25000"  [(ngModel)]="frequency">\n        <ion-label range-left class="small-text">High</ion-label>\n        <ion-label range-right>Low</ion-label>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n  -->\n    <ion-card style="width:100%;" class="cart-img" *ngFor="let piece of earpiece | async">\n      <img src="{{piece.Image}}"/>\n      <ion-item>\n        <h1><b>{{piece.Name}}</b></h1>\n        <p>{{piece.OperatingSystem}}</p>\n      </ion-item>\n    <ion-item actions>\n    <span ion-text item-start color="secondary" class="item-bold">{{piece.Price}}</span>\n  </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"C:\Users\tsuis\Desktop\Programming\Ionic\earpiece\src\pages\home\home.html"*/,
+        selector: 'page-home',template:/*ion-inline-start:"C:\Users\tsuis\Desktop\Programming\Ionic\earpiece\src\pages\home\home.html"*/'<ion-content padding>\n\n  <ion-input placeholder="Enter earpiece" [(ngModel)]="earpiecesearch"></ion-input>\n\n  <button ion-button icon-start>\n\n  <ion-icon name="star"></ion-icon>\n\n  Bass\n\n</button>\n\n\n\n<button ion-button icon-end>\n\n  Balanced\n\n  <ion-icon name="star"></ion-icon>\n\n</button>\n\n\n\n  <ion-list>\n\n   <ion-list-header>\n\n      Price\n\n      <ion-badge item-end><span>Price:  </span>{{priceRangeDisplay}}</ion-badge>\n\n    </ion-list-header>\n\n    <ion-item>\n\n      <ion-range (ionChange)="change1(priceRange);" min="100" step="100" max="600"  [(ngModel)]="priceRange">\n\n        <ion-label range-left class="small-text">High</ion-label>\n\n        <ion-label range-right>Low</ion-label>\n\n      </ion-range>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <ion-list>\n\n    <ion-list-header>\n\n      Rating\n\n    </ion-list-header>\n\n    <ion-item>\n\n      <ion-range>\n\n        <ion-label range-left class="small-text">1</ion-label>\n\n        <ion-label range-right>10</ion-label>\n\n      </ion-range>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n    <ion-card style="width:100%;" class="cart-img" *ngFor="let piece of earpiece | async">\n\n      <img src="{{piece.Image}}"/>\n\n      <ion-item>\n\n        <h1><b>{{piece.Name}}</b></h1>\n\n        <p>{{piece.OperatingSystem}}</p>\n\n      </ion-item>\n\n    <ion-item actions>\n\n    <span ion-text item-start color="secondary" class="item-bold"><span>Price: </span>{{piece.Price}}</span>\n\n  </ion-item>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\tsuis\Desktop\Programming\Ionic\earpiece\src\pages\home\home.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _b || Object])
 ], HomePage);
 
+var _a, _b;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
