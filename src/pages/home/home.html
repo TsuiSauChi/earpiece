@@ -1,4 +1,14 @@
 <ion-content padding>
+  <ion-input placeholder="Enter earpiece" [(ngModel)]="earpiecesearch"></ion-input>
+  <button ion-button icon-start>
+  <ion-icon name="star"></ion-icon>
+  Bass
+</button>
+
+<button ion-button icon-end>
+  Balanced
+  <ion-icon name="star"></ion-icon>
+</button>
 
   <ion-list>
     <ion-list-header>
@@ -9,6 +19,31 @@
       <ion-range (ionChange)="change(sensitivity);"  min="95" step="1" max="103"  [(ngModel)]="sensitivity">
         <ion-label range-left class="small-text">High</ion-label>
         <ion-label range-right>Low</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+   <ion-list-header>
+      Price
+      <ion-badge item-end><span>Price:  </span>{{priceRangeDisplay}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range (ionChange)="change1(priceRange);" min="100" step="100" max="600"  [(ngModel)]="priceRange">
+        <ion-label range-left class="small-text">High</ion-label>
+        <ion-label range-right>Low</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Rating
+    </ion-list-header>
+    <ion-item>
+      <ion-range>
+        <ion-label range-left class="small-text">1</ion-label>
+        <ion-label range-right>10</ion-label>
       </ion-range>
     </ion-item>
   </ion-list>
@@ -33,19 +68,6 @@
     </ion-list-header>
     <ion-item>
       <ion-range (ionChange)="change();" min="15000" step="1000" max="25000"  [(ngModel)]="frequency">
-        <ion-label range-left class="small-text">High</ion-label>
-        <ion-label range-right>Low</ion-label>
-      </ion-range>
-    </ion-item>
-  </ion-list>
-
-   <ion-list>
-   <ion-list-header>
-      Price
-      <ion-badge item-end><span>USD </span>{{price}}</ion-badge>
-    </ion-list-header>
-    <ion-item>
-      <ion-range (ionChange)="change();" min="5" step="5" max="200"  [(ngModel)]="price">
         <ion-label range-left class="small-text">High</ion-label>
         <ion-label range-right>Low</ion-label>
       </ion-range>

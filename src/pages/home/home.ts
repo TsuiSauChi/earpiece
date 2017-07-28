@@ -15,6 +15,8 @@ export class HomePage {
   private impedance = 30;
   private frequency = 20000;
   private price = 5;
+  private priceRange;
+  private priceRangeDisplay = "Under $100";
 
   test:  FirebaseListObservable<Earpiece[]>;
 
@@ -25,13 +27,7 @@ export class HomePage {
         orderByChild: 'Sensitivity', 
         equalTo: this.sensitivity
       }
-    });
-
-    this.test = this.db.list('/earpiece') as FirebaseListObservable<any[]>;
-    this.test.subscribe(test => {
-      test = test
-    });
-    console.log(this.test);
+      });
   }
 
 /*
@@ -53,6 +49,38 @@ export class HomePage {
       }
     });
     console.log(sensitivity);
+  }
+
+  change1(priceRange){
+    priceRange = this.priceRange
+    this.earpiece = this.db.list('earpiece', {
+        query:{
+          orderByChild:'PriceRange',
+          equalTo: this.priceRange
+        }
+      });
+
+    if(this.priceRange == 100){
+      this.priceRangeDisplay = "Under $100";
+    }
+    if(this.priceRange == 200){
+      this.priceRangeDisplay = "$100 -$200";
+    }
+    if(this.priceRange == 300){
+      this.priceRangeDisplay = "$200 -$300";
+    }
+    if(this.priceRange == 400){
+      this.priceRangeDisplay = "$300 -$400";
+    }
+    if(this.priceRange == 500){
+      this.priceRangeDisplay = "$400 -$500";
+    }
+    if(this.priceRange == 600){
+      this.priceRangeDisplay = "$500 -$600";
+    }
+    if(this.priceRange == 700){
+      this.priceRangeDisplay = "$600+";
+    }
   }
 
 }
